@@ -7,9 +7,9 @@ Rails.application.routes.draw do
                sign_out: 'logout',
                registration: 'signup'
              },
-             controllers: {
-               sessions: 'sessions'
-             }
+               controllers: {
+                 sessions: 'sessions'
+              }
 
   resources :product_deals
   resources :user_comments, only: [:create, :index, :destroy]
