@@ -86,9 +86,12 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     nio4r (2.5.2)
+    nokogiri (1.10.9-x64-mingw32)
+      mini_portile2 (~> 2.4.0)
     nokogiri (1.10.9-x86-mingw32)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    pg (1.2.3-x64-mingw32)
     pg (1.2.3-x86-mingw32)
     puma (3.12.4)
     rack (2.2.2)
@@ -149,16 +152,17 @@ GEM
     websocket-extensions (0.1.4)
 
 PLATFORMS
+  x64-mingw32
   x86-mingw32
 
 DEPENDENCIES
   byebug
   devise
   devise-jwt (~> 0.7.0)
-  pg (>= 0.18, < 2.0)
+  pg
   puma (~> 3.7)
   rack-cors
-  rails (~> 5.2, >= 5.2.3)
+  rails
   tzinfo-data
 
 BUNDLED WITH

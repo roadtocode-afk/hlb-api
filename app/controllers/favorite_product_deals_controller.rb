@@ -55,7 +55,12 @@ class FavoriteProductDealsController < ApplicationController
   def recently_fav_prod_deals
     recently_fav_prod_deals = FavoriteProductDeal.where('created_at >= ?', 2.days.ago).limit(6)
     @prod_deals = ProductDeal.where(id: recently_fav_prod_deals.pluck(:product_deal_id))
-    render json: @prod_deals
+    prod_deals = @prod_deals.map do |prod_deal|
+      prod_deal_json = prod_deal.as_json
+      prod_deal_json["comments_length"] = prod_deal.user_comments.length
+      prod_deal = prod_deal_json
+    end
+    render json: prod_deals
   end
 
   def user_fav_prod_deal
