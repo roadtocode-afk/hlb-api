@@ -2,13 +2,20 @@ class ProductDealsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :user_favorites]
   def create
     @product_deal = ProductDeal.new(product_deal_params)
-    # image = Cloudinary::Uploader.upload(params[:image])
-    # @product_deal.img_url = image["url"]
-    @product_deal.user_id = current_user.id
-    if @product_deal.save
-      render json: @product_deal
+    date_today = Time.now
+    if @product_deal.exp_date - date_today <= 0
+      payload = {
+        message: "-The date you input has passed!",
+        status: 400
+      }
+      render json: payload, status: :bad_request
     else
-      #errors go here
+      @product_deal.user_id = current_user.id
+      if @product_deal.save
+        render json: @product_deal
+      else
+        #errors go here
+      end
     end
   end
 

@@ -9,7 +9,7 @@ class FavoriteProductDealsController < ApplicationController
       if @favorite_product_deal.save
         render json: { fav_prod_deal: @favorite_product_deal, favorited_count: product_deal.favorited_count }
       else
-      #errors go here
+
       end
     end
   end
@@ -23,7 +23,7 @@ class FavoriteProductDealsController < ApplicationController
         product_deal.favorited_count -= 1
         product_deal.save!
         @favorite_product_deal.destroy!
-        render json: product_deal
+        render json: {product_deal: product_deal}
       end
   end
 
